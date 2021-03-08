@@ -49,3 +49,13 @@ jobs:
         github_token: ${{ secrets.PAT }}
         branch: main
         force: true
+        
+    - name: sync github -> gitee
+      uses: Yikun/hub-mirror-action@master
+      if: env.dst_key
+      with:
+        src: github/jeffreyyychen
+        dst: gitee/chj545
+        static_list: "repo_sync"
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
